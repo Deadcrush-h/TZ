@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: tz-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql  
+    command: postgres -c 'max_connections=100'
+
+  app:
+    build: .
+    container_name: tz-app
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: postgres
+      DB_SSLMODE: disable
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
