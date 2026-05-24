@@ -16,7 +16,7 @@ REST API для управления иерархической структур
 ```bash
 # 1. Клонировать репозиторий
 git clone https://github.com/Deadcrush-h/TZ.git
-cd org-structure-api
+cd TZ
 
 # 2. Создать файл окружения
 cp .env.example .env
