@@ -1,13 +1,4 @@
 
-*.test
-*.out
-
-vendor/
-
-.idea/
-.vscode/
-
 .env
 .env.local
 
-*.log
