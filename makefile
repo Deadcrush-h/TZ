@@ -88,17 +88,3 @@ docker-clean:
 
 dev: docker-up migrate-up
 	@echo "${GREEN}Development environment ready!${RESET}"
-
-test-api:
-	@echo "${GREEN}Testing API endpoints...${RESET}"
-	@echo "\n1. Create department:"
-	@curl -X POST http://localhost:8080/api/departments \
-		-H "Content-Type: application/json" \
-		-d '{"name":"IT Department"}' | jq .
-	@echo "\n2. Create employee:"
-	@curl -X POST http://localhost:8080/api/departments/1/employees \
-		-H "Content-Type: application/json" \
-		-d '{"full_name":"John Doe","position":"Senior Developer"}' | jq .
-	@echo "\n3. Get department:"
-	@curl "http://localhost:8080/api/departments/1?depth=2&include_employees=true" | jq .
-	@echo "\n${GREEN}API tests completed!${RESET}"
